@@ -68,7 +68,6 @@ UnvestedAmount float64	`json:"stockprice"`
 
 
 type StockCalc int
-
 var M map[int]Quote
 
 
@@ -154,17 +153,14 @@ quote.UnvestedAmount = quote.UnvestedAmount + temp4
 buffer.WriteString(quote.Stocks)
 buffer.WriteString(",")
 }
-
-M = map[int]Quote{
-quote.TradeId : {quote.Stocks,quote.UnvestedAmount,quote.TradeId},
-}
-
-quote.TradeId = len(M) 
+quote.TradeId = quote.TradeId + 1 
 quote.Stocks = (buffer.String())
 quote.Stocks = strings.TrimSuffix(quote.Stocks, ",")
 
 
-
+M = map[int]Quote{
+quote.TradeId : {quote.Stocks,quote.UnvestedAmount,quote.TradeId},
+}
 
 
  if( err == nil ) {
@@ -270,7 +266,7 @@ stockcalc:= new(StockCalc)
 rpc.Register(stockcalc)
 rpc.HandleHTTP()
 
-err := http.ListenAndServe(":2081", nil)
+err := http.ListenAndServe(":2086", nil)
 if err != nil {
 fmt.Println(err.Error())
 }

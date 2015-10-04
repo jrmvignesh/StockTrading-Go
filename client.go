@@ -39,7 +39,7 @@ os.Exit(1)
 }
 serverAddress := os.Args[1]
 
-client, err := rpc.DialHTTP("tcp", serverAddress+":2081")
+client, err := rpc.DialHTTP("tcp", serverAddress+":2086")
 if err != nil {
 log.Fatal("dialing:", err)
 }
@@ -101,6 +101,5 @@ case 3 : break
 
 
 }
-
 
 
